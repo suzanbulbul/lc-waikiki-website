@@ -1,0 +1,18 @@
+.color-option {
+    margin: 10px;
+  }
+  
+.custom-radio {
+width: 20px;
+height: 20px;
+background-color: transparent;
+border: 2px solid #000;
+border-radius: 50%;
+display: inline-block;
+margin-right: 10px;
+cursor: pointer;
+&.selected {
+    background-color: red;
+    border-color: red;
+    }
+}
