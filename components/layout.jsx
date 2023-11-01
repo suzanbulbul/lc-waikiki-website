@@ -8,7 +8,7 @@ const Layout = ({ children }) => {
   return (
     <div>
       <Header />
-      <main className='container mt-3'>{children}</main>
+      <main className='container layout'>{children}</main>
     </div>
   );
 };

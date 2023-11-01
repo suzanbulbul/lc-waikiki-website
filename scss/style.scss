@@ -5,6 +5,11 @@
 //Bootstrap
 @import "~bootstrap/dist/css/bootstrap.min.css";
 
+//Swiper
+@import 'swiper/scss';
+@import 'swiper/scss/navigation';
+@import 'swiper/scss/pagination';
+
 // Utils
 @import 'utils/color.module.scss';
 @import 'utils/global.module.scss';
@@ -15,6 +20,8 @@
 // Components
 @import 'components/header.module.scss';
 @import 'components/button.module.scss';
+@import 'components/layout.module.scss';
+@import 'components/swiper.module.scss';
 // @import 'components/form.module.scss';
 // @import 'components/input.module.scss';
 // @import 'components/card.module.scss';

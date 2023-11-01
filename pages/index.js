@@ -1,6 +1,8 @@
 import Head from 'next/head'
 import Image from 'next/image'
 
+import SwiperComponent from '../components/swiper'
+
 
 export default function Home() {
   return (
@@ -13,6 +15,7 @@ export default function Home() {
 
       <main>
         test
+        <SwiperComponent />
       </main>
 
     </div>
