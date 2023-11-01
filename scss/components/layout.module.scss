@@ -1,3 +1,6 @@
 .layout{
-    margin-top: 170px
+    margin-top: 170px;
+    @media (max-width: 576px) {
+        margin-top: 212px;
+    }
 }

@@ -1,5 +1,3 @@
-// data.js
-
 import axios from 'axios';
 
 export async function fetchData() {
