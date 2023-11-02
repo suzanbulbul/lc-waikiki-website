@@ -7,9 +7,6 @@ import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 //API
 import { getHome } from '../pages/api/home';
 
-//Components
-// import Swiper from '../components/swiper';
-
 const Home = () => {
   const [data, setData] = useState(null);
 
@@ -26,7 +23,7 @@ const Home = () => {
     };
 
     fetchData();
-  }, []);
+  }, [getHome]);
 
   return (
     <div>

@@ -27,7 +27,7 @@ const Header = () => {
     };
 
     fetchData();
-  }, []);
+  }, [getNavigation]);
 
   const handleSearchInputClick = () => {
     const headerSearch = document.querySelector('.header-search');

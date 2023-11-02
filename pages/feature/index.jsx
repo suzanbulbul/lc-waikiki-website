@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import Link from 'next/link'; // next/link'i içe aktarın
+import Link from 'next/link';
+
+//API
 import { fetchData } from '../api/feature'; 
 
 function Feature() {
@@ -15,7 +16,7 @@ function Feature() {
     };
 
     fetchDataFromApi();
-  }, []);
+  }, [fetchData]);
 
   return (
     <div className="feature">

@@ -2,6 +2,7 @@ import React from 'react';
 
 // Components
 import Header from './header';
+import Footer from './footer';
 
 const Layout = ({ children }) => {
 
@@ -9,6 +10,7 @@ const Layout = ({ children }) => {
     <div>
       <Header />
       <main className='container layout'>{children}</main>
+      <Footer />
     </div>
   );
 };

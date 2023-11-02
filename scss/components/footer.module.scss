@@ -1,0 +1,125 @@
+.title{
+    font-size: 16px;
+    font-weight: bold;
+    line-height: normal;
+    letter-spacing: normal;
+    color: $dark-gray;
+}
+.submenu-item{
+    a{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+        color: $dark-gray;
+        font-size: 14px;
+
+        svg{
+            color: $dark-gray;
+            margin-right: 8px;
+            width: 24px;
+        }
+
+        &:hover{
+            text-decoration: underline;
+            svg{
+                color: #8b8b8b;;
+            }
+        }
+    }
+}
+
+.footer{
+
+    .benefits-area {
+        .item{
+            padding-top: calc(var(--bs-gutter-x) * 0.5);
+        }
+    }
+
+    .mobile-app{
+        text-align: center;
+        .title{
+            @extend .title;
+        }
+        .area{
+            gap: 12px; 
+            margin-top: 16px;
+            .item {
+                img{
+                    width: 110px;
+                    height: 33px;
+                }
+            }
+        }
+       
+    }
+
+    .submenu{
+        background-color: #fafafa;
+        padding:30px 15px ;
+
+        .logo{
+            width: 134px;
+            margin-bottom: 10px;
+            filter: grayscale(100%);
+        }
+
+        .tel-number, .disability{
+            @extend .submenu-item;
+            &-title{
+                @extend .title;
+                margin-bottom: 12px;
+                margin-top: 24px;
+
+            }
+        }
+
+        .navigation{
+            @media (max-width: 768px) {
+                margin-top: 30px;
+            }
+            .title{
+                @extend .title;
+            }
+            .nav-item{
+                @extend .submenu-item;
+                margin-top: 3px;
+                margin-bottom: 17px;
+            }
+        }
+
+    }
+    
+    .social-media{
+        background-color: #fafafa;
+        position: relative; 
+
+        .background-img {
+            width: 100%;
+            filter: grayscale(100%);
+        }
+    
+        .area {
+            background-color: hsla(0,0%,100%,.8);
+            border-radius: 20px;
+
+            position: absolute;
+            top: 50%; 
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+
+            padding: 10px;
+
+            .title{
+                @extend .title;
+            }
+        }
+
+        &-item{
+            @extend .submenu-item
+        }
+    }
+
+}
