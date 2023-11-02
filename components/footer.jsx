@@ -1,8 +1,7 @@
 import React, { useEffect, useState, useRef  } from 'react';
 
 // API
-import { getNavigation } from '../pages/api/navigation'; 
-import { getFooter} from '../pages/api/footer';
+import { getFooter, getNavigation} from '../pages/api/footer';
 
 //Icon
 import { ImFacebook } from "react-icons/im";
@@ -16,11 +15,10 @@ const Footer = () => {
 
   const [navigation, setNavigation] = useState(null);
   const [footer, setFooter] = useState(null);
-  const inputRef = useRef(null);
 
   useEffect(() => {
     const fetchData = async () => {
-      const navigationData = await getNavigation("footer");
+      const navigationData = await getNavigation();
       const footerData = await getFooter();
       if (navigationData) {
         setNavigation(navigationData);
@@ -60,7 +58,7 @@ const Footer = () => {
           <div className="container">
             <div className="benefits-area my-5">
               <div className="row">
-                {footer.benefitsArea.img.data.map((item, index) => (
+                {footer.benefitsArea.img.data.map((item) => (
                   <div key={item.id} className="col-6 col-md-3 item">
                     <img src={item.attributes.url} alt={item.attributes.name} />
                   </div>
@@ -71,7 +69,7 @@ const Footer = () => {
               <h2 className="title">Uygulamamızı İndirin</h2>
               <div className="d-flex justify-content-center align-items-center area">
                 {footer.mobileApp.map((item) => (
-                  <a className="item" href={item.url} key={item.id}>
+                  <a key={item.id} className="item" href={item.url}>
                     <img
                       src={item.img.data.attributes.url}
                       alt={item.img.data.attributes.name}
@@ -108,19 +106,17 @@ const Footer = () => {
                 <div className="col-md-8 col-sm-12">
                   {navigation && (
                     <div className="row navigation">
-                      {navigation.map((navItem, index) => (
-                        <>
-                          <div key={index} className="col-md-3 col-sm-12">
-                            <h2 className="title">{navItem.title}</h2>
-                            <ul>
-                              {navItem.items.map((item, itemIndex) => (
-                                <li className="nav-item" key={itemIndex}>
-                                  <a href={item.path}>{item.title}</a>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        </>
+                      {navigation.map((navItem) => (
+                        <div key={navItem.id} className="col-md-3 col-sm-12">
+                          <h2 className="title">{navItem.title}</h2>
+                          <ul>
+                            {navItem.items.map((item, itemIndex) => (
+                              <li className="nav-item" key={itemIndex}>
+                                <a href={item.path}>{item.title}</a>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
                       ))}
                     </div>
                   )}
@@ -138,8 +134,8 @@ const Footer = () => {
               <h1 className="title">{footer.socialmediaTitle}</h1>
               <ul className="d-flex justify-content-between align-items-center">
                 {footer.socialmedia &&
-                  footer.socialmedia.map((item, index) => (
-                    <li className="social-media-item" key={index}>
+                  footer.socialmedia.map((item) => (
+                    <li key={item.id} className="social-media-item">
                       <a href={item.url}>{renderSocialMediaIcon(item.icon)}</a>
                     </li>
                   ))}

@@ -2,7 +2,7 @@ import Link from 'next/link';
 import React, { useEffect, useState, useRef  } from 'react';
 
 // API
-import { getNavigation } from '../pages/api/navigation'; 
+import { getNavigation } from '../pages/api/header'; 
 
 //Icon
 import { AiOutlineSearch } from "react-icons/ai";
