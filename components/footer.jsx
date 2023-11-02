@@ -29,7 +29,7 @@ const Footer = () => {
     };
 
     fetchData();
-  }, [getNavigation, getFooter]);
+  }, []);
 
 
   function renderSocialMediaIcon(iconName) {
