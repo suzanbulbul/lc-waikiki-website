@@ -48,7 +48,10 @@ const Header = () => {
       document.removeEventListener('mousedown', handleOutsideClick);
     };
   }, []);
-
+  
+  if (data === null ) {
+    return <div>Loading...</div>;
+  }
   return (
     <header className="header">
       <div className="header_top bg-body-tertiary">

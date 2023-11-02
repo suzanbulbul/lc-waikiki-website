@@ -39,7 +39,7 @@ const Home = () => {
               pagination={{
                 clickable: true,
               }}
-              navigation={navigation === false ? false : true}
+              navigation={true}
               modules={[Autoplay, Pagination, Navigation]}
               className="mySwiper"
             >
