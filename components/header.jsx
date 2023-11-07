@@ -146,22 +146,21 @@ const Header = () => {
         </div>
         {/* Mobile Search Start*/}
         <div className="d-block d-sm-none header_middle">
-          <div className='search-container'>
-             <form className="header-search row" role="search">
-            <div className="col-10 header-search-input">
-              <AiOutlineSearch className="icon" />
-              <input
-                type="search"
-                placeholder="Ürün, kategori veya marka ara"
-                aria-label="Search"
-              />
-            </div>
-            <button className="col-2" type="submit">
-              Ara
-            </button>
-          </form>
+          <div className="search-container">
+            <form className="header-search row" role="search">
+              <div className="col-10 header-search-input">
+                <AiOutlineSearch className="icon" />
+                <input
+                  type="search"
+                  placeholder="Ürün, kategori veya marka ara"
+                  aria-label="Search"
+                />
+              </div>
+              <button className="col-2" type="submit">
+                Ara
+              </button>
+            </form>
           </div>
-         
         </div>
         {/* Mobile Search End*/}
         <div className="header_bottom">
@@ -169,32 +168,40 @@ const Header = () => {
             {data &&
               data.map((item) => (
                 <li key={item.id} className="dropdown">
-                  <Link
+                  {/* <Link
                     className="dropdown-toggle"
                     href={item.path}
                     role="button"
                   >
                     {item.title}
-                  </Link>
+                  </Link> */}
+                  <label className="dropdown-toggle">{item.title}</label>
                   <div className="dropdown-menu">
-                    <nav className='container'>
+                    <nav className="container">
                       <ul>
                         <li className="d-flex justify-content-start align-items-start">
                           {item.items.map((subItem) => {
                             return (
                               <div key={subItem.id}>
-                                <Link
+                                {/* <Link
                                   href={subItem.path}
                                   className="dropdown-item"
                                 >
                                   {subItem.title}
-                                </Link>
+                                </Link> */}
+                                <label className="dropdown-item">
+                                  {subItem.title}
+                                </label>
                                 {subItem.items.length > 0 && (
                                   <ul>
                                     {subItem.items.map((nestedItem) => (
                                       <li key={nestedItem.id}>
                                         <Link
-                                          href={nestedItem.path}
+                                          href={
+                                            nestedItem.path === `${subItem.path}/#`
+                                              ? "/comingsoon"
+                                              : nestedItem.path
+                                          }
                                           className="nestedItem-item"
                                         >
                                           {nestedItem.title}
