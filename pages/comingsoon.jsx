@@ -1,9 +1,13 @@
-import React from 'react'
+import React from 'react';
+import Lottie from 'lottie-react';
+import comingSoon from '../public/animations/coming-soon.json';
 
 const Comingsoon = () => {
   return (
-    <div>Comingsoon</div>
-  )
-}
+    <div className='comingsoon'>
+      <Lottie className='animation' animationData={comingSoon} />
+    </div>
+  );
+};
 
-export default Comingsoon
+export default Comingsoon;
