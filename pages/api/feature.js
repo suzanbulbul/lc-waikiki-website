@@ -1,9 +1,14 @@
 import axios from 'axios';
+import getConfig from 'next/config';
+
+const { publicRuntimeConfig } = getConfig();
+
+const apiBaseUrl = publicRuntimeConfig.apiBaseUrl;
 
 export async function fetchData() {
   try {
     const response = await axios.get(
-      "https://simple-one-8tzu.onrender.com/api/products?populate=*,feature,feature.size,color.image"
+      `${apiBaseUrl}/products?populate=*,feature,feature.size,color.image,jsonData`
     );
     return response.data.data;
   } catch (error) {

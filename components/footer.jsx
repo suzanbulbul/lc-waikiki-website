@@ -50,9 +50,6 @@ const Footer = () => {
         return null; 
     }
   }
-  if (navigation === null || footer === null) {
-    return <div>Loading...</div>;
-  }
 
   return (
     <footer className="footer">

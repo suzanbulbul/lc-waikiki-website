@@ -1,9 +1,14 @@
 import axios from 'axios';
+import getConfig from 'next/config';
+
+const { publicRuntimeConfig } = getConfig();
+
+const apiBaseUrl = publicRuntimeConfig.apiBaseUrl;
 
 export async function getHome() {
   try {
     const response = await axios.get(
-      "https://simple-one-8tzu.onrender.com/api/home?populate=*,marketplace1,marketplace1.img,marketplace2,marketplace2.img,banner,banner.img"
+      `${apiBaseUrl}/home?populate=*,marketplace1,marketplace1.img,marketplace2,marketplace2.img,banner,banner.img`
     );
     return response.data.data.attributes;
   } catch (error) {

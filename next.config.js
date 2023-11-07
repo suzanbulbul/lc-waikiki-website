@@ -1,7 +1,13 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+module.exports = {
   reactStrictMode: true,
   swcMinify: true,
-}
-
-module.exports = nextConfig
+  env: {
+    NEXT_PUBLIC_API_BASE_URL : process.env.NEXT_PUBLIC_API_BASE_URL ,
+  },
+  serverRuntimeConfig: {
+    apiBaseUrl: process.env.NEXT_PUBLIC_API_BASE_URL ,
+  },
+  publicRuntimeConfig: {
+    apiBaseUrl: process.env.NEXT_PUBLIC_API_BASE_URL || '/api',
+  },
+};
