@@ -4,6 +4,10 @@ import React, { useEffect, useState, useRef  } from 'react';
 // API
 import { getNavigation } from '../pages/api/header'; 
 
+//Swiper
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay } from 'swiper/modules';
+
 //Icon
 import { AiOutlineSearch } from "react-icons/ai";
 import { CiCreditCard1 } from "react-icons/ci";
@@ -11,7 +15,6 @@ import { PiTruckLight } from "react-icons/pi";
 import { FaRegUser } from "react-icons/fa";
 import { MdFavoriteBorder } from "react-icons/md";
 import { BsBag } from "react-icons/bs";
-
 
 const Header = () => {
 
@@ -55,9 +58,32 @@ const Header = () => {
         <div className="container">
           <div className="d-flex justify-content-md-between justify-content-sm-center align-items-center">
             <section className="header-marketing-management">
-              <p>Binlerce Marka Tek Tıkla LC Waikiki’de</p>
+              <Swiper
+                autoplay={{
+                  delay: 1000,
+                  disableOnInteraction: false,
+                }}
+                modules={[Autoplay]}
+                className="mySwiper"
+              >
+                <SwiperSlide key="1">
+                  <p>Binlerce Marka Tek Tıkla LC Waikiki’de</p>
+                </SwiperSlide>
+                <SwiperSlide key="2">
+                  <p>
+                    LC Waikiki Kalite ve Güvencesi - 100 Bine Varan Ürün
+                    Üzerinde 275 Farklı Kalite ve Güvenlik Testi
+                  </p>
+                </SwiperSlide>
+                <SwiperSlide key="3">
+                  <p>
+                    İlk Siparişini Mobil Uygulamadan Ver, 185 TL İndirim Kazan.
+                    Detaylar Yardım Sayfasında!
+                  </p>
+                </SwiperSlide>
+              </Swiper>
             </section>
-            <div className="d-none d-sm-block">
+            <div className="d-none d-lg-block">
               <ul className="d-flex justify-content-between align-items-center">
                 <li className="nav-link-item">
                   <Link
@@ -198,7 +224,8 @@ const Header = () => {
                                       <li key={nestedItem.id}>
                                         <Link
                                           href={
-                                            nestedItem.path === `${subItem.path}/#`
+                                            nestedItem.path ===
+                                            `${subItem.path}/#`
                                               ? "/comingsoon"
                                               : nestedItem.path
                                           }
