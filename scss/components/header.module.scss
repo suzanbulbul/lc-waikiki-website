@@ -16,6 +16,14 @@
         align-items: center;
     
         .header-marketing-management{
+            pointer-events: none;
+            width: 45%;
+            @media (max-width: 991px) {
+                width: 100%;
+                p{
+                    text-align: center
+                }
+            }
             p{
                 @extend .text-middle;
             }
