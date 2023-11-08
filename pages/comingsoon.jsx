@@ -1,4 +1,6 @@
 import React from 'react';
+
+//LottieFiles
 import Lottie from 'lottie-react';
 import comingSoon from '../public/animations/coming-soon.json';
 

@@ -5,9 +5,11 @@ import { fetchData } from '../api/feature';
 
 //Componets
 import Card from '../../components/card';
+import Loading from '../../components/loading';
 
 function Feature() {
   const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchDataFromApi = async () => {
@@ -19,6 +21,18 @@ function Feature() {
 
     fetchDataFromApi();
   }, [fetchData]);
+
+  useEffect(() => {
+    if (!data) {
+      setLoading(true);
+    } else {
+      setLoading(false);
+    }
+  }, [data]);
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <div className="feature">
