@@ -23,7 +23,7 @@ const Card = ({data, pages}) => {
                       }}
                       navigation={false}
                       modules={[ Pagination, Navigation]}
-                      className="mySwiper"
+                      className="mySwiper swiper-pagination_line"
                     >
                       {color.image.data.map((image, index) => (
                         <SwiperSlide
