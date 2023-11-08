@@ -7,8 +7,12 @@ import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 //API
 import { getHome } from '../pages/api/home';
 
+//Componets
+import Loading from '../components/loading';
+
 const Home = () => {
   const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,6 +28,18 @@ const Home = () => {
 
     fetchData();
   }, [getHome]);
+
+  useEffect(() => {
+    if (!data) {
+      setLoading(true);
+    } else {
+      setLoading(false);
+    }
+  }, [data]);
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <div>
