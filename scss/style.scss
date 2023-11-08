@@ -13,7 +13,7 @@
 // Utils
 @import 'utils/color.module.scss';
 @import 'utils/global.module.scss';
-// @import 'utils/typography.module.scss';
+@import 'utils/typography.module.scss';
 @import 'utils/grid.module.scss';
 // @import 'utils/animation.module.scss';
 
@@ -22,11 +22,11 @@
 @import 'components/button.module.scss';
 @import 'components/layout.module.scss';
 @import 'components/footer.module.scss';
+@import 'components/card.module.scss';
+@import 'components/swiper.module.scss';
 // @import 'components/form.module.scss';
 // @import 'components/input.module.scss';
-// @import 'components/card.module.scss';
 // @import 'components/selectedItem.module.scss';
-// @import 'components/checkbox.module.scss';
 // @import 'components/banner.module.scss';
 
 // Pages

@@ -1,0 +1,18 @@
+.swiper-pagination{
+    display: flex;
+    justify-content: center;
+    height: 2px;
+    position: relative;
+    top: 5px;
+    &-bullet{
+        background-color: $mischka;
+        width: 30px;
+        height: 2px;
+        border-radius: 1px;
+        margin: 0 3px;
+        &-active{
+            background-color: $royal-blue;
+        }
+    }
+
+}
