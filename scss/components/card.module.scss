@@ -111,8 +111,8 @@
                     @extend .text-middle;
                     color: $dim-gray;
         
-                    height: 40px!important;
-                    min-width: 40px!important;
+                    height: 40px;
+                    min-width: 40px;
         
                     border: 0;
                     border-radius: 5px;
@@ -120,12 +120,38 @@
         
                     cursor: pointer;
                     &.selected{
-                        background-color: $dodger-blue!important;
-                        font-weight: bold!important;
-                        color: $white!important;
-                        border: 0!important;
-                        min-height: initial!important;
-                                        }
+                        background-color: $dodger-blue;
+                        font-weight: bold;
+                        color: $white;
+                        min-height: initial;
+                    }
+                    &.disabled {
+                        cursor: not-allowed;
+                        position: relative;
+                    
+                        &::before {
+                            position: absolute;
+                            top: 6px;
+                            left: 50%;
+                            content: " ";
+                            height: 30px;
+                            width: 1px;
+                            background-color: $gray-smoke;
+                            transform: rotate(45deg);
+                            display: inline-block;
+                        }
+                        &::after {
+                            position: absolute;
+                            top: 6px;
+                            left: 50%;
+                            content: " ";
+                            height: 30px;
+                            width: 1px;
+                            background-color: $gray-smoke;
+                            transform: rotate(-45deg);
+                            display: inline-block;
+                        }
+                    }
                 }
             }
             &-color{
