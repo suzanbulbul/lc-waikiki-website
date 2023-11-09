@@ -13,7 +13,7 @@ const Card = ({data, pages}) => {
         data.attributes.color.map(
           (color) =>
             color.enable && (
-              <Link href={`/${pages}/${data.id}`} key={color.id}>
+              <Link href={`${pages}/${data.id}`} key={color.id}>
                 <div className="form-check form-check-inline p-0 m-0 w-100">
                   <div className="row">
                     <Swiper
@@ -42,8 +42,8 @@ const Card = ({data, pages}) => {
                   </div>
                 </div>
                 <div className="card-body">
-                  <h5 className="card-title">{data.attributes.title}</h5>
-                  <p className="card-desc">{data.attributes.desc}</p>
+                  <h5 className="card-title">{data.attributes.attribute.brandName}</h5>
+                  <p className="card-desc">{data.attributes.attribute.brandDesc}</p>
                   <b className="card-price">{color.price}</b>
                   {data.attributes.color.length > 1 && (
                     <div className="colors-area">

@@ -5,7 +5,7 @@
     left: 0;
     padding: 0;
     z-index: 1028;
-    background: #fff;
+    background: $white;
     box-shadow: 0 3px 6px 0 rgba(0,0,0,.06);
     &_top{
         height: 35px;
@@ -72,7 +72,7 @@
                 align-items: center;
                 flex-wrap: nowrap;
     
-                background: #fff;
+                background: $white;
     
                 border-radius: 14px;
                 border: solid 1px #555;
@@ -124,14 +124,14 @@
                     text-transform: uppercase;
     
                     cursor: pointer;
-                    background: #fff;
+                    background: $white;
     
                     @extend .text-large;
                     color: $dim-gray;
     
                     &:hover{
     
-                        color: #fff;
+                        color: $white;
                         background: $royal-blue;
                         border-color: #193db0 !important;
                     }
@@ -200,7 +200,7 @@
                 position: absolute;
                 top: -9999px;
                 z-index: 999;
-                background-color: #fff;
+                background-color: $white;
                 border: none;
                 padding: 12px 15px 17px;
                 margin: 0;
