@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 
 //API
-import { fetchData } from '../api/feature'; 
+import { getSkirts } from '../../../api/skirts'; 
+
 
 //Componets
-import Card from '../../components/card';
-import Loading from '../../components/loading';
+import Card from '../../../../components/card';
+import Loading from '../../../../components/loading';
 
 function Feature() {
   const [data, setData] = useState(null);
@@ -13,14 +14,15 @@ function Feature() {
 
   useEffect(() => {
     const fetchDataFromApi = async () => {
-      const apiData = await fetchData();
+      const apiData = await getSkirts();
+
       if (apiData) {
         setData(apiData);
       }
     };
 
     fetchDataFromApi();
-  }, [fetchData]);
+  }, [getSkirts]);
 
   useEffect(() => {
     if (!data) {
@@ -41,7 +43,7 @@ function Feature() {
           data.map((item) => {
             return (
               <div className="col-sm-12 col-md-6 col-lg-4" key={item.id}>
-                <Card data={item} pages="feature" />
+                <Card data={item} pages="skirts" />
               </div>
             );
           })}

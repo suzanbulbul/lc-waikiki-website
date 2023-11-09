@@ -9,7 +9,7 @@
     color: $dark-gray;
 }
 .text-middle{
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 500;
     font-stretch: normal;
     font-style: normal;
@@ -21,6 +21,17 @@
 .text-large{
     font-size: 16px;
     font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+
+    color: $dark-gray;
+}
+.font_14px-bold{
+    font-size: 14px;
+    font-weight: bold;
+    line-height: .86;
     font-stretch: normal;
     font-style: normal;
     line-height: normal;
