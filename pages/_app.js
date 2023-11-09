@@ -1,7 +1,6 @@
 
 import React, { useEffect }  from "react";
-
-// import { Toaster } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 
 //Components
 import Layout from '../components/layout';
@@ -17,7 +16,7 @@ function MyApp({ Component, pageProps }) {
   return (
         <Layout>
           <Component {...pageProps} />
-          {/* <Toaster /> */}
+          <Toaster />
         </Layout>
   );
 }

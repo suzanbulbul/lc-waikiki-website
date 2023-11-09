@@ -1,15 +1,16 @@
-
 import React, { useEffect, useState } from 'react';
 
-function CardDetail({data}) {
+//Toast
+import toast from 'react-hot-toast';
+
+const CardDetail = ({data}) => {
   const [selectedColor, setSelectedColor] = useState();
-  const [selectedButton, setSelectedButton] = useState(null);
+  const [selectedButton, setSelectedButton] = useState();
 
   useEffect(() => {
     if( data ){
-      const selectColor= data.color.filter(item => item.enable === true);
-      setSelectedColor(selectColor[0])
-
+      const selectColor = data.color.filter((item) => item.enable === true);
+      setSelectedColor(selectColor[0]);
     }
   }, [data])
 
@@ -26,15 +27,12 @@ function CardDetail({data}) {
     
     if (index !== -1 && selectedColor.size[index].piece > 0) {      
       selectedColor.size[index].piece = selectedColor.size[index].piece - 1;
-      setSelectedButton(null);
-
-      console.log("Sepete eklendi");
+      setSelectedButton();
+      toast.success("Sepete eklendi");
     } else {
-      console.log("Sepete eklenemedi", selectedColor);
+      toast.error("Sepete eklenemedi");
     }
   }
-
-  console.log(selectedColor)
 
   return (
     <div className="card-detail">
