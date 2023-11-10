@@ -10,6 +10,7 @@
 
   text-align: center;
   text-decoration: none;
+  border-radius: 5px;
 
   display: flex;
   justify-content: center;
@@ -51,5 +52,19 @@
   @extend .button;
   border: $royal-blue 1px solid;
   color: $royal-blue;
+}
 
+//Link
+.link-button{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  border: none;
+  background-color: transparent;
+
+  @extend .font_14px;
+  color: $dim-gray;
+
+  margin: 20px 0;
 }

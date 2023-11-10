@@ -7,12 +7,23 @@ $charcoal: #29323b;
 $silver: rgba(198,206,215,.3);
 $slatem-gray: #6b778d;
 $light-gray: #e0e0e0;
+$light-smoke-gray: #f8f8f8;
 $gray-smoke: #969696;
 
 
 $royal-blue: #193db0;
 $dodger-blue: #4e8bfd;
+$sky-blue-tint: #c8dafe;
 
 $white-smoke: #F4F4F4;
 $white: #fff;
 $mischka: #B6B7B9;
+
+$lime-green: #75c33a;
+
+.blue{
+    color: $royal-blue!important;
+}
+.dark{
+    color: $dim-gray!important;
+}
