@@ -8,15 +8,15 @@ import Footer from './footer';
 const Layout = ({ children }) => {
   const router = useRouter();
 
-  if (router.pathname === '/comingsoon' || router.pathname === '/404') {
+  if (router.pathname === "/comingsoon" || router.pathname === "/404") {
     return <main>{children}</main>;
   }
-  
+
   return (
     <div>
       <Header />
-      <main className='container layout'>{children}</main>
-      <Footer />
+      <main className="container layout">{children}</main>
+      {router.pathname !== "/cart" && <Footer />}
     </div>
   );
 };

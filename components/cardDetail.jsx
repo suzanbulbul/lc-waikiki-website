@@ -81,7 +81,6 @@ const CardDetail = ({data}) => {
                       key={size.id}
                     >
                       {size.size}
-                      {size.piece}
                     </button>
                   ))}
                 </div>

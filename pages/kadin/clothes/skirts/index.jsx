@@ -22,7 +22,7 @@ function Feature() {
     };
 
     fetchDataFromApi();
-  }, [getSkirts]);
+  }, [data]);
 
   useEffect(() => {
     if (!data) {
