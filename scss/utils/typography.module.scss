@@ -1,43 +1,56 @@
-.text-small{
-    font-size: 8px;
-    font-weight: 500;
+.default_text{
     font-stretch: normal;
     font-style: normal;
     line-height: normal;
     letter-spacing: normal;
+}
+.text-small{
+    @extend .default_text;
+
+    font-size: 8px;
+    font-weight: 500;
 
     color: $dark-gray;
 }
 .text-middle{
+    @extend .default_text;
+
     font-size: 13px;
     font-weight: 500;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: normal;
 
     color: $dark-gray;
 }
 .text-large{
+    @extend .default_text;
+
     font-size: 16px;
     font-weight: 600;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: normal;
 
     color: $dark-gray;
 }
 .font_14px-bold{
+    @extend .default_text;
+
     font-size: 14px;
     font-weight: bold;
     line-height: .86;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: normal;
-
     color: $dark-gray;
+}
+.font_16px{
+    @extend .default_text;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    color: $dim-gray;
+}
+.font_18px-bold{
+    @extend .default_text;
+
+    font-size: 18px;
+    font-weight: bold;
+
+    color: $royal-blue;
 }
 .icon{
     font-size: initial;

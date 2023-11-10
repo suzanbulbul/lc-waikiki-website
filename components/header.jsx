@@ -110,7 +110,7 @@ const Header = () => {
       </div>
       <div className="container">
         <div className="header_middle d-flex justify-content-between align-items-center">
-          <Link className="header-logo" href="/home">
+          <Link className="header-logo" href="/">
             <img
               src="https://res.cloudinary.com/ditprd5xt/image/upload/v1698758803/LC_Waikiki_logo_e6457ed5ef.png"
               alt="logo"
@@ -160,7 +160,7 @@ const Header = () => {
 
               <li>
                 <Link
-                  href="#"
+                  href="/cart"
                   className="d-flex flex-column align-items-center"
                 >
                   <BsBag className="icon" />
