@@ -15,11 +15,80 @@ import { BsGift, BsBell } from 'react-icons/bs';
 //Components
 // import Loading from '../components/loading';
 
+const Calculate = ({calculate, setCalculate}) => {
+  console.log(calculate)
+
+  const decreaseCalculate = () => {
+    if(calculate > 0){
+      setCalculate(calculate - 1);
+    }
+  };
+  const increaseCalculate = () => {
+    setCalculate(calculate + 1);
+  };
+
+  return (
+    <div className="calculate">
+      <div className="d-flex justify-content-between align-items-center ">
+        <button onClick={decreaseCalculate}>-</button>
+        <span>{calculate}</span>
+        <button onClick={increaseCalculate}>+</button>
+      </div>
+    </div>
+  );
+}
+
+const EmptyCart = ({data}) => {
+  return (
+    <>
+      <div className="cart-empty">
+        <Lottie className="animation" animationData={emptyCart} />
+        <h1 className="font_18px-bold mb-10">
+          Sepetinizde ürün bulunmamaktadır.
+        </h1>
+        <p className="font_16px mb-10">
+          LCWaikiki&rsquo;de binlerce ürün seni bekliyor.
+        </p>
+        <Link href="/" className="primary-button">
+          ALIŞVERİŞE BAŞLA
+        </Link>
+      </div>
+      <div className="membership-advantage">
+        <h1 className="font_14px-bold">Neden Üye Olmalısın?</h1>
+        <div className="row">
+          {data.map((item) => (
+            <div key={item.id} className="col-md-4 col-sm-12">
+              <div className="membership-advantage-card">
+                <div className="card-content d-flex justify-content-center align-items-center">
+                  {item.icon}
+                  <p className="font_14px-bold">{item.text}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="text-center">
+          <Link href="/#" className="primary-button mb-10">
+            ÜYE OL
+          </Link>
+          <Link className="text-small" href="/#">
+            Zaten üye misin?
+          </Link>
+          <Link href="/#" className="secondary-button">
+            GİRİŞ YAP
+          </Link>
+        </div>
+      </div>
+    </>
+  );
+
+}
 
 const Cart = () => {
   const [cart, setCart]= useState();
   const [loading, setLoading] = useState(true);
   const [discount, setDiscount]= useState(true);
+  const [calculate, setCalculate]= useState(1);
 
   useEffect(() => {
     const fetchDataFromApi = async () => {
@@ -62,8 +131,6 @@ const Cart = () => {
   // if (loading) {
   //   return <Loading />;
   // }
-
-  console.log(cart);
 
   return (
     <div className="cart">
@@ -113,7 +180,7 @@ const Cart = () => {
                   SEPETİNE 0,01 TL &rsquo; LİK ÜRÜN EKLE
                 </p>
               </div>
-              <div className="cart-card">
+              <div className={`cart-card ${calculate == 0 && "disabled"}`}>
                 <div className="form-check m-0">
                   <input
                     className="form-check-input"
@@ -154,7 +221,7 @@ const Cart = () => {
                               </div>
                             </div>
                           </div>
-                          calculate
+                          <Calculate calculate={calculate} setCalculate={setCalculate}/>
                         </div>
                         <span className="text-small">
                           Bu ürün hediye paketine uygun değildir.
@@ -259,48 +326,12 @@ const Cart = () => {
         </div>
       ) : (
         <>
-          <div className="cart-empty">
-            <Lottie className="animation" animationData={emptyCart} />
-            <h1 className="font_18px-bold mb-10">
-              Sepetinizde ürün bulunmamaktadır.
-            </h1>
-            <p className="font_16px mb-10">
-              LCWaikiki&rsquo;de binlerce ürün seni bekliyor.
-            </p>
-            <Link href="/" className="primary-button">
-              ALIŞVERİŞE BAŞLA
-            </Link>
-          </div>
-          <div className="membership-advantage">
-            <h1 className="font_14px-bold">Neden Üye Olmalısın?</h1>
-            <div className="row">
-              {membershipAdvantage.map((item) => (
-                <div key={item.id} className="col-md-4 col-sm-12">
-                  <div className="membership-advantage-card">
-                    <div className="card-content d-flex justify-content-center align-items-center">
-                      {item.icon}
-                      <p className="font_14px-bold">{item.text}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="text-center">
-              <Link href="/#" className="primary-button mb-10">
-                ÜYE OL
-              </Link>
-              <Link className="text-small" href="/#">
-                Zaten üye misin?
-              </Link>
-              <Link href="/#" className="secondary-button">
-                GİRİŞ YAP
-              </Link>
-            </div>
-          </div>
+          <EmptyCart data={membershipAdvantage}/>
         </>
       )}
     </div>
   );
 }
+
 
 export default Cart
