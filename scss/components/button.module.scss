@@ -54,6 +54,20 @@
   color: $royal-blue;
 }
 
+.square-button{
+  color: $mischka;
+  background-color: transparent;
+
+  border: 1px solid $mischka;
+  border-radius: 3px;
+
+  height: 30px;
+  width: 30px;
+  &:hover{
+    box-shadow: 0 3px 3px 0 $light-gray
+  }
+}
+
 //Link
 .link-button{
   display: flex;

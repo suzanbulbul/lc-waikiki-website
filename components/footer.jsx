@@ -3,12 +3,8 @@ import React, { useEffect, useState, useRef  } from 'react';
 // API
 import { getFooter, getNavigation} from '../pages/api/footer';
 
-//Icon
-import { ImFacebook } from "react-icons/im";
-import { AiOutlineInstagram } from "react-icons/ai";
-import { BiLogoLinkedin, BiLogoYoutube } from "react-icons/bi";
-import { FaAmericanSignLanguageInterpreting } from "react-icons/fa";
-import { BsTelephone } from "react-icons/bs";
+//Icons
+import { Facebook, Instagram, Linkedin, Youtube, SignLanguage, Telephone } from '../public/icons';
 
 
 const Footer = () => {
@@ -35,17 +31,17 @@ const Footer = () => {
   function renderSocialMediaIcon(iconName) {
     switch (iconName) {
       case 'facebook':
-        return <ImFacebook />;
+        return <Facebook />;
       case 'instagram':
-        return <AiOutlineInstagram />;
+        return <Instagram />;
       case 'linkedin':
-        return <BiLogoLinkedin />;
+        return <Linkedin />;
       case 'youtube':
-        return <BiLogoYoutube />;
+        return <Youtube />;
       case 'asl':
-        return <FaAmericanSignLanguageInterpreting />;
+        return <SignLanguage />;
       case 'telephone':
-        return <BsTelephone />;
+        return <Telephone />;
       default:
         return null; 
     }
