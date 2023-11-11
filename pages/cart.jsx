@@ -9,8 +9,7 @@ import Lottie from 'lottie-react';
 import emptyCart from '../public/animations/empty-cart.json';
 
 //Icons
-import { SlWallet } from 'react-icons/sl';
-import { BsGift, BsBell } from 'react-icons/bs';
+import { Dustbin, Arrow, Favorite, Lock, Warning, Wallet, Gift, Bell } from '../public/icons';
 
 //Components
 // import Loading from '../components/loading';
@@ -113,17 +112,17 @@ const Cart = () => {
   const membershipAdvantage = [
     {
       id: 1,
-      icon: <BsGift className="icon"/>,
+      icon: <Gift className="icon"/>,
       text: "İlk Siparişe Kargo Bedava",
     },
     {
       id: 2,
-      icon: <SlWallet className="icon"/>,
+      icon: <Wallet className="icon"/>,
       text: "Kapıda Nakit Ödeme Seçeneği",
     },
     {
       id: 3,
-      icon: <BsBell className="icon"/>,
+      icon: <Bell className="icon"/>,
       text: "İndirimlerden Öncelikli Haberdar Olma İmkanı",
     },
   ];
@@ -141,6 +140,7 @@ const Cart = () => {
               <div className="d-flex justify-content-between">
                 <h2 className="font_18px-bold dark">Sepetim (1 Ürün)</h2>
                 <Link className="font_14px-bold blue" href="/">
+                  <Arrow className='icon-left_180 me-1'/>
                   Alışverişe Devam Et
                 </Link>
               </div>
@@ -159,7 +159,7 @@ const Cart = () => {
                     Tümünü Seç
                   </label>
                 </div>
-                <button className="link-button">Seçilenleri Sil (1)</button>
+                <button className="link-button"><Dustbin className='me-1'/>Seçilenleri Sil (1)</button>
               </div>
               <div className="d-flex justify-content-between align-items-center bg-gray p-0 py-2">
                 <div className="form-check m-0">
@@ -231,8 +231,8 @@ const Cart = () => {
                         <div className="d-flex flex-column justify-content-between align-items-end h-100">
                           <p>{cart.color[0].price}</p>
                           <div className="d-flex justify-content-center align-items-center">
-                            <button className="link-button">Sil</button>
-                            <button className="link-button">Kaydet</button>
+                            <button className="square-button me-2"><Dustbin/></button>
+                            <button className="square-button"><Favorite /></button>
                           </div>
                           <p className="text-small blue">Markalarda İndirim!</p>
                         </div>
@@ -252,7 +252,7 @@ const Cart = () => {
                   <div className="d-flex justify-content-between align-items-center secure-shopping">
                     <h1 className="font_20px-bold">Sipariş Özeti</h1>
                     <p className="text-middle bold d-flex justify-content-center align-items-center">
-                      Güvenli Sipariş
+                      <Lock className='me-1'/> Güvenli Sipariş
                     </p>
                   </div>
                   <div className="d-flex justify-content-between align-items-center mb-2">
@@ -316,6 +316,7 @@ const Cart = () => {
               <p className="text-middle mb-1">* Fiyatlara KDV dahildir.</p>
               <div className="d-flex justify-start align-items-center">
                 <p className="text-middle">
+                  <Warning className='me-1'/>
                   Sepete eklenen ürünleri diğer müşterilerimiz satın
                   alabilmektedir. Stoklar tükenmeden alışveriş işlemlerinizi
                   tamamlayınız.

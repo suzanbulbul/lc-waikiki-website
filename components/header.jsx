@@ -8,13 +8,8 @@ import { getNavigation } from '../pages/api/header';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
 
-//Icon
-import { AiOutlineSearch } from "react-icons/ai";
-import { CiCreditCard1 } from "react-icons/ci";
-import { PiTruckLight } from "react-icons/pi";
-import { FaRegUser } from "react-icons/fa";
-import { MdFavoriteBorder } from "react-icons/md";
-import { BsBag } from "react-icons/bs";
+//Icons
+import { Search, CreditCard, OrderTrack, User, Favorite, Bag} from "../public/icons"
 
 const Header = () => {
 
@@ -90,7 +85,7 @@ const Header = () => {
                     href="#"
                     className="d-flex justify-content-between align-items-center"
                   >
-                    <CiCreditCard1 className="icon" />
+                    <CreditCard className="icon" />
                     Hediye Kartı Satın Al
                   </Link>
                 </li>
@@ -99,7 +94,7 @@ const Header = () => {
                     href="#"
                     className="d-flex justify-content-between align-items-center"
                   >
-                    <PiTruckLight className="icon" />
+                    <OrderTrack className="icon" />
                     Sipariş Takip
                   </Link>
                 </li>
@@ -122,7 +117,7 @@ const Header = () => {
               role="search"
             >
               <div className="header-search-input">
-                <AiOutlineSearch className="icon" />
+                <Search className="icon" />
                 <input
                   type="search"
                   placeholder="Ürün, kategori veya marka ara"
@@ -144,7 +139,7 @@ const Header = () => {
                   href="#"
                   className="d-flex flex-column align-items-center"
                 >
-                  <FaRegUser className="icon" />
+                  <User className="icon" />
                   Giriş Yap
                 </Link>
               </li>
@@ -153,7 +148,7 @@ const Header = () => {
                   href="#"
                   className="d-flex flex-column align-items-center"
                 >
-                  <MdFavoriteBorder className="icon" />
+                  <Favorite className="icon" />
                   Favorilerim
                 </Link>
               </li>
@@ -163,7 +158,7 @@ const Header = () => {
                   href="/cart"
                   className="d-flex flex-column align-items-center"
                 >
-                  <BsBag className="icon" />
+                  <Bag className="icon" />
                   Sepetim
                 </Link>
               </li>
@@ -175,7 +170,7 @@ const Header = () => {
           <div className="search-container">
             <form className="header-search row" role="search">
               <div className="col-10 header-search-input">
-                <AiOutlineSearch className="icon" />
+                <Search className="icon" />
                 <input
                   type="search"
                   placeholder="Ürün, kategori veya marka ara"
