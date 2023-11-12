@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { useSelector, useDispatch } from 'react-redux'
+
+//Slice
+import { cartList } from '../store/Slice/CartSlice'
 
 //API
 import { getSkirtseById } from '../pages/api/skirts'; 
@@ -15,7 +19,6 @@ import { Dustbin, Arrow, Favorite, Lock, Warning, Wallet, Gift, Bell } from '../
 // import Loading from '../components/loading';
 
 const Calculate = ({calculate, setCalculate}) => {
-  console.log(calculate)
 
   const decreaseCalculate = () => {
     if(calculate > 0){
@@ -84,10 +87,15 @@ const EmptyCart = ({data}) => {
 }
 
 const Cart = () => {
+  const dispatch = useDispatch();
+
   const [cart, setCart]= useState();
   const [loading, setLoading] = useState(true);
   const [discount, setDiscount]= useState(true);
   const [calculate, setCalculate]= useState(1);
+
+  const selectedProduct = useSelector(cartList);
+  console.log(selectedProduct)
 
   useEffect(() => {
     const fetchDataFromApi = async () => {

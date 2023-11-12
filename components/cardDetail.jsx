@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux'
+
+//Slice
+import { addToCart } from '../store/Slice/CartSlice'
 
 //Toast
 import toast from 'react-hot-toast';
 
 const CardDetail = ({data}) => {
+  const dispatch = useDispatch();
+
   const [selectedColor, setSelectedColor] = useState();
-  const [selectedButton, setSelectedButton] = useState();
+  const [selectedSize, setSelectedSize] = useState(null);
 
   useEffect(() => {
     if( data ){
@@ -15,7 +21,7 @@ const CardDetail = ({data}) => {
   }, [data])
 
   const handleButtonClick = (size) => {
-    setSelectedButton(size);
+    setSelectedSize(size);
   };
 
   const handleColorChange = (color) => {
@@ -23,16 +29,26 @@ const CardDetail = ({data}) => {
   };
   
   const hanleAddCart = () => {
-    const index = selectedColor.size.findIndex((size) => size.size === selectedButton);
-    
+    const index = selectedColor.size.findIndex((size) => size.size === selectedSize);
+  
     if (index !== -1 && selectedColor.size[index].piece > 0) {      
-      selectedColor.size[index].piece = selectedColor.size[index].piece - 1;
-      setSelectedButton();
+      const updatedSizes = [...selectedColor.size];
+      updatedSizes[index] = { ...updatedSizes[index], piece: updatedSizes[index].piece - 1 };
+  
+      setSelectedSize(null);
+  
+      const selectedData = {
+        size: selectedSize,
+        product: { ...selectedColor, size: updatedSizes }, // Kopya üzerinde güncelleme yap
+        productContent: data.attribute
+      };
+  
+      dispatch(addToCart(selectedData));
       toast.success("Sepete eklendi");
     } else {
       toast.error("Sepete eklenemedi");
     }
-  }
+  };
 
   return (
     <div className="card-detail">
@@ -75,7 +91,7 @@ const CardDetail = ({data}) => {
                     <button
                       disabled={size.piece == 0}
                       className={`product-size-item mx-2 ${
-                        size.piece != 0  && selectedButton === size.size && "selected"
+                        size.piece != 0  && selectedSize === size.size && "selected"
                       } ${size.piece == 0 && "disabled"}`}
                       onClick={() => handleButtonClick(size.size)}
                       key={size.id}
@@ -85,7 +101,7 @@ const CardDetail = ({data}) => {
                   ))}
                 </div>
               </div>
-              <button disabled={!selectedButton} onClick={hanleAddCart} className="primary-button">SEPETE EKLE</button>
+              <button disabled={!selectedSize} onClick={hanleAddCart} className="primary-button">SEPETE EKLE</button>
             </div>
             <div className="card-body">
               <div className="product-color">
