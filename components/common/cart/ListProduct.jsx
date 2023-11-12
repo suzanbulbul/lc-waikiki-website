@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { useSelector} from 'react-redux'
+import { useSelector, useDispatch} from 'react-redux'
 
 //Slice
-import { cartList } from '../../../store/Slice/CartSlice'
+import { cartList, removeToCart } from '../../../store/Slice/CartSlice'
 
 //Icons
 import { Dustbin, Favorite }  from '../../../public/icons/index';
@@ -11,6 +11,7 @@ import { Dustbin, Favorite }  from '../../../public/icons/index';
 import toast from 'react-hot-toast';
 
 const Calculate = ({selectedItem, setPiece}) => {
+    const dispatch = useDispatch();
   
     const [calculate, setCalculate] = useState(1);
     setPiece(calculate);  
@@ -131,7 +132,7 @@ const ListProduct = () => {
                       <div className="d-flex flex-column justify-content-between align-items-end h-100">
                         <p>{selectedItem.product.price}</p>
                         <div className="d-flex justify-content-center align-items-center">
-                          <button className="square-button me-2">
+                          <button onClick={()=> dispatch(removeToCart(item))} className="square-button me-2">
                             <Dustbin />
                           </button>
                           <button className="square-button">

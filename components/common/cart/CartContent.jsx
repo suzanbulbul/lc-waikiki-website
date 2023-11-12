@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { useSelector} from 'react-redux'
+import { useSelector, useDispatch} from 'react-redux'
 import Link from "next/link";
 
 //Slice
-import { cartList } from '../../../store/Slice/CartSlice'
+import { cartList, removeAllCart, removeToCart } from '../../../store/Slice/CartSlice'
 
 //Components
 import PaymentStep from "./PaymentStep";
@@ -13,6 +13,7 @@ import ListProduct from "./ListProduct";
 import { Dustbin, Arrow } from "../../../public/icons/index";
 
 const CartContent = () => {
+  const dispatch = useDispatch();
   const selectedProduct = useSelector(cartList);
 
   return (
@@ -43,9 +44,9 @@ const CartContent = () => {
                 Tümünü Seç
               </label>
             </div>
-            <button className="link-button">
+            <button onClick={()=> dispatch(removeAllCart())} className="link-button">
               <Dustbin className="me-1" />
-              Seçilenleri Sil (1)
+              Seçilenleri Sil {cartList.lenght}
             </button>
           </div>
           <ListProduct
