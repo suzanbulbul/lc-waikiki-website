@@ -34,12 +34,14 @@ const CardDetail = ({data}) => {
     if (index !== -1 && selectedColor.size[index].piece > 0) {      
       const updatedSizes = [...selectedColor.size];
       updatedSizes[index] = { ...updatedSizes[index], piece: updatedSizes[index].piece - 1 };
-  
+      
       setSelectedSize(null);
-  
+
       const selectedData = {
+        id: '_' + Math.random().toString(36).substr(2, 9),
         size: selectedSize,
-        product: { ...selectedColor, size: updatedSizes }, // Kopya üzerinde güncelleme yap
+        amount: 1,
+        product: { ...selectedColor, size: updatedSizes },
         productContent: data.attribute
       };
   
