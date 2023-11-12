@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, use } from 'react'
 import { useSelector, useDispatch} from 'react-redux'
 
 //Slice
@@ -15,7 +15,7 @@ const Calculate = ({selectedItem}) => {
     const SelectedSize = selectedItem.product.size.find(item => item.size === selectedItem.size)
 
     const decreaseCalculate = () => {
-      if(selectedItem.amount > 1){
+      if(selectedItem.amount > 0){
         dispatch(updateAmountInCart({ id: selectedItem.id, amount: selectedItem.amount - 1 }))
       }
     };
@@ -70,8 +70,7 @@ const ListProduct = () => {
                 SEPETİNE 0,01 TL &rsquo; LİK ÜRÜN EKLE
               </p>
             </div>
-            {/* ${piece == 0 && "disabled"} */}
-            <div className={`cart-card`}>
+            <div className={`cart-card ${selectedItem.amount == 0 && "disabled"}`}>
               <div className="form-check m-0">
                 <input
                   className="form-check-input"
@@ -102,8 +101,7 @@ const ListProduct = () => {
                               </p>
                               <p className="text-middle">
                                 {
-                                  selectedItem.productContent.features
-                                    .productCode
+                                  selectedItem.productContent.features.productCode
                                 }
                               </p>
                             </div>
@@ -117,9 +115,7 @@ const ListProduct = () => {
                             </div>
                           </div>
                         </div>
-                        <Calculate
-                          selectedItem={selectedItem}
-                        />
+                        <Calculate selectedItem={selectedItem} />
                       </div>
                       <span className="text-small">
                         Bu ürün hediye paketine uygun değildir.
@@ -127,9 +123,27 @@ const ListProduct = () => {
                     </div>
                     <div className="col-4">
                       <div className="d-flex flex-column justify-content-between align-items-end h-100">
-                        <p>{selectedItem.product.price}</p>
+                        <div className="d-flex flex-column justify-content-between align-items-end">
+                          <p className="font-14px mb-1">{`${parseFloat(
+                            selectedItem.product.price.replace(",", ".")
+                          )} x ${parseInt(selectedItem.amount, 10)}`}</p>
+                          <p className="font-14px bold">
+                            =
+                            {(
+                              parseFloat(
+                                selectedItem.product.price.replace(",", ".")
+                              ) * parseInt(selectedItem.amount, 10)
+                            ).toFixed(2)}
+                            TL
+                          </p>
+                        </div>
                         <div className="d-flex justify-content-center align-items-center">
-                          <button onClick={()=> dispatch(removeToCart(selectedItem.id))} className="square-button me-2">
+                          <button
+                            onClick={() =>
+                              dispatch(removeToCart(selectedItem.id))
+                            }
+                            className="square-button me-2"
+                          >
                             <Dustbin />
                           </button>
                           <button className="square-button">
