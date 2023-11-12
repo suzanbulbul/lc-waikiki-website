@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch} from 'react-redux'
 
 //Slice
-import { cartList, removeToCart } from '../../../store/Slice/CartSlice'
+import { cartList, removeToCart, updateAmountInCart } from '../../../store/Slice/CartSlice'
 
 //Icons
 import { Dustbin, Favorite }  from '../../../public/icons/index';
@@ -10,21 +10,18 @@ import { Dustbin, Favorite }  from '../../../public/icons/index';
 //Toast
 import toast from 'react-hot-toast';
 
-const Calculate = ({selectedItem, setPiece}) => {
+const Calculate = ({selectedItem}) => { 
     const dispatch = useDispatch();
-  
-    const [calculate, setCalculate] = useState(1);
-    setPiece(calculate);  
     const SelectedSize = selectedItem.product.size.find(item => item.size === selectedItem.size)
-  
+
     const decreaseCalculate = () => {
-      if(calculate > 0){
-        setCalculate(calculate - 1);
+      if(selectedItem.amount > 1){
+        dispatch(updateAmountInCart({ id: selectedItem.id, amount: selectedItem.amount - 1 }))
       }
     };
     const increaseCalculate = () => {
-      if(SelectedSize.piece > calculate){
-        setCalculate(calculate + 1);
+      if(SelectedSize.piece > selectedItem.amount){
+        dispatch(updateAmountInCart({ id: selectedItem.id, amount: selectedItem.amount + 1 }))
       }
       else{
         toast.error("Ürün stokta yok.")
@@ -35,7 +32,7 @@ const Calculate = ({selectedItem, setPiece}) => {
       <div className="calculate">
         <div className="d-flex justify-content-between align-items-center ">
           <button onClick={decreaseCalculate}>-</button>
-          <span>{calculate}</span>
+          <span>{selectedItem.amount}</span>
           <button onClick={increaseCalculate}>+</button>
         </div>
       </div>
@@ -43,7 +40,7 @@ const Calculate = ({selectedItem, setPiece}) => {
   }
 
 const ListProduct = () => {
-  const [piece, setPiece] = useState();
+  const dispatch = useDispatch();
 
   const selectedProduct = useSelector(cartList);
 
@@ -73,7 +70,8 @@ const ListProduct = () => {
                 SEPETİNE 0,01 TL &rsquo; LİK ÜRÜN EKLE
               </p>
             </div>
-            <div className={`cart-card ${piece == 0 && "disabled"}`}>
+            {/* ${piece == 0 && "disabled"} */}
+            <div className={`cart-card`}>
               <div className="form-check m-0">
                 <input
                   className="form-check-input"
@@ -121,7 +119,6 @@ const ListProduct = () => {
                         </div>
                         <Calculate
                           selectedItem={selectedItem}
-                          setPiece={setPiece}
                         />
                       </div>
                       <span className="text-small">
@@ -132,7 +129,7 @@ const ListProduct = () => {
                       <div className="d-flex flex-column justify-content-between align-items-end h-100">
                         <p>{selectedItem.product.price}</p>
                         <div className="d-flex justify-content-center align-items-center">
-                          <button onClick={()=> dispatch(removeToCart(item))} className="square-button me-2">
+                          <button onClick={()=> dispatch(removeToCart(selectedItem.id))} className="square-button me-2">
                             <Dustbin />
                           </button>
                           <button className="square-button">
