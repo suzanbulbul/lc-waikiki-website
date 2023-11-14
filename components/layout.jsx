@@ -15,8 +15,8 @@ const Layout = ({ children }) => {
   return (
     <div>
       <Header />
-      <main className="container layout">{children}</main>
-      {router.pathname !== "/cart" && <Footer />}
+      <main className="container-fluid layout">{children}</main>
+      {(router.pathname !== "/cart" && router.pathname !== "/favorite") && <Footer />}
     </div>
   );
 };

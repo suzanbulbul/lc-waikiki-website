@@ -3,12 +3,11 @@ import Link from 'next/link'
 
 //LottieFiles
 import Lottie from 'lottie-react';
-import emptyCart from '../../../public/animations/empty-cart.json';
 
 //Icons
-import { Wallet, Gift, Bell } from '../../../public/icons/index';
+import { Wallet, Gift, Bell } from '../../public/icons/index';
 
-const EmptyCart = () => {
+const EmptyContent = ({animationData, title, desc}) => {
   
   const membershipAdvantage = [
     {
@@ -31,12 +30,12 @@ const EmptyCart = () => {
   return (
     <>
       <div className="cart-empty">
-        <Lottie className="animation" animationData={emptyCart} />
+        <Lottie className="animation" animationData={animationData} />
         <h1 className="font_18px-bold mb-10">
-          Sepetinizde ürün bulunmamaktadır.
+          {title}
         </h1>
         <p className="font_16px mb-10">
-          LCWaikiki&rsquo;de binlerce ürün seni bekliyor.
+          {desc}
         </p>
         <Link href="/" className="primary-button">
           ALIŞVERİŞE BAŞLA
@@ -72,4 +71,4 @@ const EmptyCart = () => {
   );
 }
 
-export default EmptyCart
+export default EmptyContent

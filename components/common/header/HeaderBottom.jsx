@@ -26,7 +26,7 @@ const HeaderBottom = () => {
             <li key={item.id} className="dropdown">
               <label className="dropdown-toggle">{item.title}</label>
               <div className="dropdown-menu">
-                <nav className="container">
+                <nav className="container-fluid">
                   <ul>
                     <li className="d-flex justify-content-start align-items-start">
                       {item.items.map((subItem) => {
@@ -59,7 +59,7 @@ const HeaderBottom = () => {
                                         ) : (
                                           <button
                                             type="button"
-                                            class="nestedItem-item disable"
+                                            className="nestedItem-item disable"
                                             data-toggle="tooltip"
                                             data-placement="top"
                                             title="Coming Soon..."

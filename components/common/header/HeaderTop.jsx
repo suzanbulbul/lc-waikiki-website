@@ -11,7 +11,7 @@ import {  CreditCard, OrderTrack } from "../../../public/icons"
 const HeaderTop = () => {
   return (
     <div className="header_top bg-body-tertiary">
-    <div className="container">
+    <div className="container-fluid">
       <div className="d-flex justify-content-md-between justify-content-sm-center align-items-center">
         <section className="header-marketing-management">
           <Swiper
