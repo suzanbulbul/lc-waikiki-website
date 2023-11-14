@@ -53,6 +53,12 @@
         color: $dark;
         font-size: 24px;
 
+        display: inline-block;
+        position: absolute;
+        right: 0;
+        z-index: 1;
+        cursor: pointer;
+
         &.active{
             color: $dodger-blue;
         }

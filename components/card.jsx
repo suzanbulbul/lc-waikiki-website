@@ -1,14 +1,41 @@
 import React from 'react'
 import Link from 'next/link';
+import { useRouter } from 'next/router'; 
+import { useDispatch } from 'react-redux'
 
 //Swiper
 import { Swiper, SwiperSlide } from 'swiper/react';
 import {  Pagination, Navigation } from 'swiper/modules';
 
+//Slice
+import { addToFavorite } from '../store/Slice/FavoriteSlice'
+
+//Toast
+import toast from 'react-hot-toast';
+
 //Icons
 import { Favorite } from '../public/icons'
 
 const Card = ({data, pages}) => {
+  const dispatch = useDispatch();
+  const router = useRouter();
+
+  const handleAddFavorite = (event, product, productFeature) => {
+    event.preventDefault();
+
+    const selectedData = {
+      id: '_' + Math.random().toString(36).substr(2, 9),
+      title: productFeature.brandName,
+      desc: productFeature.brandDesc,
+      price: product.price,
+      code: productFeature.features.productCode,
+      image: product.image.data[0].attributes.url,
+      url: `${router.pathname}/${(data.id)}`,
+    };
+    dispatch(addToFavorite(selectedData));
+    toast.success("Sepete eklendi");
+  };
+
   return (
     <div className="card">
       {data &&
@@ -33,17 +60,24 @@ const Card = ({data, pages}) => {
                           key={index}
                           className="col-md-6 col-sm-12 mb-3"
                         >
-                            <img
-                              className="card-img-top"
-                              src={image.attributes.url}
-                              alt={image.attributes.name}
-                              key={image.id}
-                            />
+                          <img
+                            className="card-img-top"
+                            src={image.attributes.url}
+                            alt={image.attributes.name}
+                            key={image.id}
+                          />
                         </SwiperSlide>
                       ))}
                     </Swiper>
                   </div>
-                  <Favorite className='card-icon' />
+                  <button
+                    onClick={(event) =>
+                      handleAddFavorite(event, color, data.attributes.attribute)
+                    }
+                    className="card-icon"
+                  >
+                    <Favorite />
+                  </button>
                 </div>
                 <div className="card-body">
                   <h5 className="card-title">

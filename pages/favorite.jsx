@@ -1,15 +1,13 @@
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 
-//API
-import { getSkirts } from '../pages/api/skirts'; 
-
-//Swiper
-import { Swiper, SwiperSlide } from 'swiper/react';
-import {  Pagination, Navigation } from 'swiper/modules';
+//Slice
+import {favoriteList} from '../store/Slice/FavoriteSlice'
 
 //Components
 import EmptyContent from '../components/common/EmptyContent';
+import Loading from '../components/loading';
 
 //LottieFiles
 import EmptyFavorite from "../public/animations/empty-favorite.json";
@@ -18,92 +16,56 @@ import EmptyFavorite from "../public/animations/empty-favorite.json";
 import { Dustbin } from "../public/icons/index";
 
 const Favorite = () => {
-  const [favorite, setFavorite] = useState(true);
+  const selectedFavorites = useSelector(favoriteList);
+  const [loading, setLoading] = useState(true);
 
-  const [favorites, setData] = useState(null);
 
   useEffect(() => {
-    const fetchDataFromApi = async () => {
-      const apiData = await getSkirts();
+    if (!selectedFavorites) {
+      setLoading(true);
+    } else {
+      setLoading(false);
+    }
+  }, [selectedFavorites]);
 
-      if (apiData) {
-        setData(apiData);
-      }
-    };
-
-    fetchDataFromApi();
-  }, [favorites]);
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <div>
-      {favorite === false ? (
+      {selectedFavorites.length > 0 ? (
+        <div className="favorite">
+          <div className="row">
+            {selectedFavorites &&
+              selectedFavorites.map((product) => (
+                <div className="col-sm-12 col-md-6 col-lg-4" key={product.id}>
+                  <div className="card">
+                    <Link href={product.url}>
+                      <img
+                        className="card-img-top"
+                        src={product.image}
+                        alt="favori product img"
+                      />
+                      <Dustbin className="card-icon" />
+                      <div className="card-body">
+                        <h5 className="card-title">{product.title}</h5>
+                        <p className="card-desc">{product.desc}</p>
+                        <b className="card-price blue">{product.price}</b>
+                        <div className="primary-button mt-4">SEPETE EKLE</div>
+                      </div>
+                    </Link>
+                  </div>
+                </div>
+              ))}
+          </div>
+        </div>
+      ) : (
         <EmptyContent
           title="Favori Ürününüz Yok."
           desc="Favorilerinize ürün eklemediniz, tek yapmanız gereken ürün görsellerinin üzerindeki küçük kalp ikonuna tıklamak."
           animationData={EmptyFavorite}
         />
-      ) : (
-        <div className="favorite">
-          <div className="row">
-            {favorites &&
-              favorites.map((data) => {
-                return (
-                  <div className="col-sm-12 col-md-6 col-lg-4 bg-white" key={data.id}>
-                    <div className="card">
-                      {data &&
-                        data.attributes.color.map(
-                          (color) =>
-                            color.enable && (
-                              <Link href="/" key={data.id}>
-                                <div className="form-check form-check-inline p-0 m-0 w-100">
-                                  <div className="row">
-                                    <Swiper
-                                      centeredSlides={true}
-                                      pagination={{
-                                        clickable: true,
-                                      }}
-                                      navigation={false}
-                                      modules={[Pagination, Navigation]}
-                                      className="mySwiper swiper-pagination_line"
-                                    >
-                                      {color.image.data.map((image, index) => (
-                                        <SwiperSlide
-                                          key={index}
-                                          className="col-md-6 col-6 mb-3"
-                                        >
-                                          <img
-                                            className="card-img-top"
-                                            src={image.attributes.url}
-                                            alt={image.attributes.name}
-                                            key={image.id}
-                                          />
-                                        </SwiperSlide>
-                                      ))}
-                                    </Swiper>
-                                  </div>
-                                  <Dustbin className="card-icon" />
-                                </div>
-                                <div className="card-body">
-                                  <h5 className="card-title">
-                                    {data.attributes.attribute.brandName}
-                                  </h5>
-                                  <p className="card-desc">
-                                    {data.attributes.attribute.brandDesc}
-                                  </p>
-                                  <b className="card-price blue">{color.price}</b>
-                                  <div className="primary-button mt-4">
-                                    SEPETE EKLE
-                                  </div>
-                                </div>
-                              </Link>
-                            )
-                        )}
-                    </div>
-                  </div>
-                );
-              })}
-          </div>
-        </div>
       )}
     </div>
   );

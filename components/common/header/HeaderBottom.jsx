@@ -59,7 +59,7 @@ const HeaderBottom = () => {
                                         ) : (
                                           <button
                                             type="button"
-                                            class="nestedItem-item disable"
+                                            className="nestedItem-item disable"
                                             data-toggle="tooltip"
                                             data-placement="top"
                                             title="Coming Soon..."
