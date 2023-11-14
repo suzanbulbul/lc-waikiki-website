@@ -69,7 +69,7 @@ const HeaderMiddle = () => {
               </li>
               <li>
                 <Link
-                  href="#"
+                  href="/favorite"
                   className="d-flex flex-column align-items-center"
                 >
                   <Favorite className="icon" />

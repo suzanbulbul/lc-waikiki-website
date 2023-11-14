@@ -26,7 +26,7 @@ const HeaderBottom = () => {
             <li key={item.id} className="dropdown">
               <label className="dropdown-toggle">{item.title}</label>
               <div className="dropdown-menu">
-                <nav className="container">
+                <nav className="container-fluid">
                   <ul>
                     <li className="d-flex justify-content-start align-items-start">
                       {item.items.map((subItem) => {

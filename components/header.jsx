@@ -11,7 +11,7 @@ const Header = () => {
 
     <header className="header">
       <HeaderTop />
-      <div className="container">
+      <div className="container-fluid">
         <HeaderMiddle />
         <HeaderBottom />
       </div>

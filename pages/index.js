@@ -103,14 +103,19 @@ const Home = () => {
               ))}
             </Swiper>
           </div>
-          <div className="row mt-5">
-            {data.banner.map((item, index) => (
-              <div key={index} className="col-md-6 col-sm-12 mb-3">
-                <a href={item.url}>
-                  <img src={item.img.data.attributes.url} alt={item.altText} />
-                </a>
-              </div>
-            ))}
+          <div className="container">
+            <div className="row mt-5">
+              {data.banner.map((item, index) => (
+                <div key={index} className="col-md-6 col-sm-12 mb-3">
+                  <a href={item.url}>
+                    <img
+                      src={item.img.data.attributes.url}
+                      alt={item.altText}
+                    />
+                  </a>
+                </div>
+              ))}
+            </div>
           </div>
         </>
       )}

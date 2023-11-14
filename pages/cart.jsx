@@ -7,9 +7,12 @@ import { cartList } from '../store/Slice/CartSlice'
 //API
 import { getSkirtseById } from '../pages/api/skirts'; 
 
+//LottieFiles
+import emptyCart from "../public/animations/empty-cart.json";
+
 //Components
 import Loading from '../components/loading';
-import EmptyCart from '../components/common/cart/EmptyCart';
+import EmptyContent from '../components/common/EmptyContent';
 import CartContent from '../components/common/cart/CartContent';
 
 const Cart = () => {
@@ -48,7 +51,11 @@ const Cart = () => {
         <CartContent />
       ) : (
         <>
-          <EmptyCart />
+          <EmptyContent
+            title="Sepetinizde ürün bulunmamaktadır."
+            desc="LCWaikiki'de binlerce ürün seni bekliyor."
+            animationData={emptyCart}
+          />
         </>
       )}
     </div>
