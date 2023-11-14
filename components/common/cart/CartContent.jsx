@@ -46,13 +46,13 @@ const CartContent = () => {
             </div>
             <button onClick={()=> dispatch(removeAllCart())} className="link-button">
               <Dustbin className="me-1" />
-              Seçilenleri Sil {cartList.lenght}
+              Seçilenleri Sil  ({selectedProduct.length})
             </button>
           </div>
           <ListProduct
             data={selectedProduct}
           />
-          <div className="line"></div>
+          <div className="line mt-4"></div>
         </div>
         <PaymentStep />
       </div>

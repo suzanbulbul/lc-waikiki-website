@@ -1,4 +1,4 @@
-import React, { useState, useEffect, use } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch} from 'react-redux'
 
 //Slice
@@ -41,8 +41,25 @@ const Calculate = ({selectedItem}) => {
 
 const ListProduct = () => {
   const dispatch = useDispatch();
+  const [allAmount, setAllAmount] = useState();
 
   const selectedProduct = useSelector(cartList);
+
+  useEffect(() => {
+    totalAmount();
+  }, [selectedProduct])
+
+  const totalAmount = () => {
+    let total = 0;
+    selectedProduct.forEach((product) => {
+      let amount = parseInt(product.amount, 10);
+      let price = parseFloat(product.product.price.replace(",", "."));
+
+      total += amount * price;
+
+      setAllAmount(total.toFixed(2))
+    });
+  };
 
     return (
       <ul>
@@ -67,10 +84,20 @@ const ListProduct = () => {
                 </label>
               </div>
               <p className="text-middle bold">
-                SEPETİNE 0,01 TL &rsquo; LİK ÜRÜN EKLE
+                {690 - allAmount > 0 ? (
+                  <>
+                    SEPETİNE
+                    <span className="blue"> {(690 - allAmount).toFixed(2)}</span>{" "}
+                    TL &rsquo; LİK ÜRÜN EKLE, KARGO BEDAVA OLSUN!
+                  </>
+                ) : (
+                  "ÜCRETSİZ KARGO"
+                )}
               </p>
             </div>
-            <div className={`cart-card ${selectedItem.amount == 0 && "disabled"}`}>
+            <div
+              className={`cart-card ${selectedItem.amount == 0 && "disabled"}`}
+            >
               <div className="form-check m-0">
                 <input
                   className="form-check-input"
@@ -101,7 +128,8 @@ const ListProduct = () => {
                               </p>
                               <p className="text-middle">
                                 {
-                                  selectedItem.productContent.features.productCode
+                                  selectedItem.productContent.features
+                                    .productCode
                                 }
                               </p>
                             </div>
@@ -117,17 +145,17 @@ const ListProduct = () => {
                         </div>
                         <Calculate selectedItem={selectedItem} />
                       </div>
-                      <span className="text-small">
+                      {/* <span className="text-small">
                         Bu ürün hediye paketine uygun değildir.
-                      </span>
+                      </span> */}
                     </div>
                     <div className="col-4">
-                      <div className="d-flex flex-column justify-content-between align-items-end h-100">
-                        <div className="d-flex flex-column justify-content-between align-items-end">
+                      <div className="d-flex flex-column justify-content-start align-items-end h-100">
+                        <div className="d-flex flex-column justify-content-between align-items-end mb-3">
                           <p className="font-14px mb-1">{`${parseFloat(
                             selectedItem.product.price.replace(",", ".")
                           )} x ${parseInt(selectedItem.amount, 10)}`}</p>
-                          <p className="font-14px bold">
+                          <p className="font_18px-bold blue">
                             =
                             {(
                               parseFloat(
@@ -150,7 +178,7 @@ const ListProduct = () => {
                             <Favorite />
                           </button>
                         </div>
-                        <p className="text-small blue">Markalarda İndirim!</p>
+                        {/* <p className="text-small blue">Markalarda İndirim!</p> */}
                       </div>
                     </div>
                   </div>

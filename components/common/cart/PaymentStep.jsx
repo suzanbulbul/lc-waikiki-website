@@ -45,30 +45,31 @@ const PaymentStep = () => {
             </div>
             <div className="d-flex justify-content-between align-items-center mb-2">
               <p>İndirim</p>
-              <p>150,00 TL</p>
+              <p>-150,00 TL</p>
             </div>
             <div className="d-flex justify-content-between align-items-center mb-2">
-              <p>Ara Toplam</p>
+              <p className='bold'>Ara Toplam</p>
               <p>
                 {allAmount != 0 ? (allAmount - 150).toFixed(2) : allAmount} TL
               </p>
             </div>
             <div className="d-flex justify-content-between align-items-center mb-2">
               <p>Kargo İşlemi</p>
-              <p>29.00 TL</p>
+
+              <p>{690 - allAmount > 0 ? "29.00 TL" : "BEDAVA"}</p>
             </div>
             <div className="d-flex justify-content-between align-items-center mb-2">
               <div className="font_14px-bold text-center total-discount-box">
-                <p className="font_18px-bold">Toplam İndirim</p>
+                <p className="font_18px-bold">TOPLAM İNDİRİM</p>
                 <br />
-                <span className="font_18px-bold">150,00 TL</span>
+                <span className="font_18px-bold">{690 - allAmount > 0 ? "150,00 TL" : "179,00 TL"}</span>
               </div>
               <div className="font_14px-bold text-center">
-                <p className="font_18px-bold">Genel İndirim</p>
+                <p className="font_18px-bold">GENEL TOPLAM</p>
                 <br />
                 <span className="font_18px-bold">
                   {allAmount != 0
-                    ? (allAmount - 150 + 29).toFixed(2)
+                    ? (690 - allAmount > 0 ? (allAmount - 150 + 29).toFixed(2) : (allAmount - 150).toFixed(2))
                     : allAmount}
                   TL
                 </span>
