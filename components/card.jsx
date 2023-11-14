@@ -5,6 +5,9 @@ import Link from 'next/link';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import {  Pagination, Navigation } from 'swiper/modules';
 
+//Icons
+import { Favorite } from '../public/icons'
+
 const Card = ({data, pages}) => {
   return (
     <div className="card">
@@ -22,7 +25,7 @@ const Card = ({data, pages}) => {
                         clickable: true,
                       }}
                       navigation={false}
-                      modules={[ Pagination, Navigation]}
+                      modules={[Pagination, Navigation]}
                       className="mySwiper swiper-pagination_line"
                     >
                       {color.image.data.map((image, index) => (
@@ -30,20 +33,25 @@ const Card = ({data, pages}) => {
                           key={index}
                           className="col-md-6 col-sm-12 mb-3"
                         >
-                          <img
-                            className="card-img-top"
-                            src={image.attributes.url}
-                            alt={image.attributes.name}
-                            key={image.id}
-                          />
+                            <img
+                              className="card-img-top"
+                              src={image.attributes.url}
+                              alt={image.attributes.name}
+                              key={image.id}
+                            />
                         </SwiperSlide>
                       ))}
                     </Swiper>
                   </div>
+                  <Favorite className='favorite-icon' />
                 </div>
                 <div className="card-body">
-                  <h5 className="card-title">{data.attributes.attribute.brandName}</h5>
-                  <p className="card-desc">{data.attributes.attribute.brandDesc}</p>
+                  <h5 className="card-title">
+                    {data.attributes.attribute.brandName}
+                  </h5>
+                  <p className="card-desc">
+                    {data.attributes.attribute.brandDesc}
+                  </p>
                   <b className="card-price">{color.price}</b>
                   {data.attributes.color.length > 1 && (
                     <div className="colors-area">
