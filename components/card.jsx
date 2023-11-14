@@ -43,7 +43,7 @@ const Card = ({data, pages}) => {
                       ))}
                     </Swiper>
                   </div>
-                  <Favorite className='favorite-icon' />
+                  <Favorite className='card-icon' />
                 </div>
                 <div className="card-body">
                   <h5 className="card-title">
