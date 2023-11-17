@@ -30,8 +30,8 @@ const Card = ({data, id, pages}) => {
 
     const selectedData = {
       id: "_" + Math.random().toString(36).substr(2, 9),
-      size: null,
-      amount: null,
+      size: 0,
+      amount: 0,
       product: product,
       productContent: productFeature,
       url: `${router.pathname}/${data.id}`,
