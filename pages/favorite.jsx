@@ -1,9 +1,10 @@
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
 //Slice
-import {favoriteList} from '../store/Slice/FavoriteSlice'
+import { favoriteList } from '../store/Slice/FavoriteSlice'
+import { removeToFavorite } from '../store/Slice/FavoriteSlice'
 
 //Components
 import EmptyContent from '../components/common/EmptyContent';
@@ -16,6 +17,8 @@ import EmptyFavorite from "../public/animations/empty-favorite.json";
 import { Dustbin } from "../public/icons/index";
 
 const Favorite = () => {
+  const dispatch = useDispatch();
+
   const selectedFavorites = useSelector(favoriteList);
   const [loading, setLoading] = useState(true);
 
@@ -32,6 +35,11 @@ const Favorite = () => {
     return <Loading />;
   }
 
+  const handleRemoveFavorite = (event, product) => {
+    event.preventDefault();
+    dispatch(removeToFavorite(product.id));
+  };
+
   return (
     <div>
       {selectedFavorites.length > 0 ? (
@@ -44,15 +52,30 @@ const Favorite = () => {
                     <Link href={product.url}>
                       <img
                         className="card-img-top"
-                        src={product.image}
+                        src={product.product.image.data[0].attributes.url}
                         alt="favori product img"
                       />
-                      <Dustbin className="card-icon" />
+                      <button
+                        onClick={(event) =>
+                          handleRemoveFavorite(event, product)
+                        }
+                        className="card-icon me-2"
+                      >
+                        <Dustbin />
+                      </button>
                       <div className="card-body">
-                        <h5 className="card-title">{product.title}</h5>
-                        <p className="card-desc">{product.desc}</p>
-                        <b className="card-price blue">{product.price}</b>
-                        <div className="primary-button mt-4">SEPETE EKLE</div>
+                        <h5 className="card-title">
+                          {product.productContent.brandDesc}
+                        </h5>
+                        <p className="card-desc">
+                          {product.productContent.brandName}
+                        </p>
+                        <b className="card-price blue">
+                          {product.product.price}
+                        </b>
+                        <button className="primary-button mt-4">
+                          SEPETE EKLE
+                        </button>
                       </div>
                     </Link>
                   </div>

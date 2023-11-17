@@ -1,14 +1,17 @@
 import React from 'react'
 import Link from 'next/link';
 import { useRouter } from 'next/router'; 
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 //Swiper
 import { Swiper, SwiperSlide } from 'swiper/react';
 import {  Pagination, Navigation } from 'swiper/modules';
 
 //Slice
-import { addToFavorite } from '../store/Slice/FavoriteSlice'
+import { addToFavorite, favoriteList } from '../store/Slice/FavoriteSlice'
+
+//Helpers
+import { isProductAdd } from '../public/helper/isProductAdd'
 
 //Toast
 import toast from 'react-hot-toast';
@@ -16,24 +19,41 @@ import toast from 'react-hot-toast';
 //Icons
 import { Favorite } from '../public/icons'
 
-const Card = ({data, pages}) => {
+const Card = ({data, id, pages}) => {
   const dispatch = useDispatch();
   const router = useRouter();
+
+  const favList = useSelector(favoriteList);
 
   const handleAddFavorite = (event, product, productFeature) => {
     event.preventDefault();
 
     const selectedData = {
-      id: '_' + Math.random().toString(36).substr(2, 9),
-      title: productFeature.brandName,
-      desc: productFeature.brandDesc,
-      price: product.price,
-      code: productFeature.features.productCode,
-      image: product.image.data[0].attributes.url,
-      url: `${router.pathname}/${(data.id)}`,
+      id: "_" + Math.random().toString(36).substr(2, 9),
+      size: null,
+      amount: null,
+      product: product,
+      productContent: productFeature,
+      url: `${router.pathname}/${data.id}`,
     };
-    dispatch(addToFavorite(selectedData));
-    toast.success("Sepete eklendi");
+    
+
+    if (favList.length > 0 ){
+
+      const compareProduct = isProductAdd(favList, selectedData);
+
+      if (compareProduct) {
+        return toast.error("Ürün zaten favorilerde.");
+      }else {
+        dispatch(addToFavorite(selectedData));
+        return toast.success("Ürün favorilere eklendi.");
+      }
+      }
+    else{
+      dispatch(addToFavorite(selectedData));
+      toast.success("Ürün favorilere eklendi.");
+    }
+
   };
 
   return (
