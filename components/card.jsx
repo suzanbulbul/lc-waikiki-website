@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link';
-import { useRouter } from 'next/router'; 
+// import { useRouter } from 'next/router'; 
 import { useDispatch, useSelector } from 'react-redux'
 
 //Swiper
@@ -21,7 +21,7 @@ import { Favorite } from '../public/icons'
 
 const Card = ({data, id, pages}) => {
   const dispatch = useDispatch();
-  const router = useRouter();
+  // const router = useRouter();
 
   const favList = useSelector(favoriteList);
 
@@ -34,7 +34,7 @@ const Card = ({data, id, pages}) => {
       amount: 0,
       product: product,
       productContent: productFeature,
-      url: `${router.pathname}/${data.id}`,
+      // url: `${router.pathname}/${data.id}`,
     };
 
     if (favList.length > 0 ){

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux'
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 
 //Slice
 import { addToCart } from '../store/Slice/CartSlice'
@@ -45,7 +45,7 @@ const CardDetail = ({data}) => {
         amount: 1,
         product: { ...selectedColor, size: updatedSizes },
         productContent: data.attribute,
-        url: router.asPath,
+        // url: router.asPath,
       };
   
       dispatch(addToCart(selectedData));
