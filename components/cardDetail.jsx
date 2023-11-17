@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux'
+import { useRouter } from 'next/router';
 
 //Slice
 import { addToCart } from '../store/Slice/CartSlice'
@@ -9,6 +10,7 @@ import toast from 'react-hot-toast';
 
 const CardDetail = ({data}) => {
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const [selectedColor, setSelectedColor] = useState();
   const [selectedSize, setSelectedSize] = useState(null);
@@ -42,7 +44,8 @@ const CardDetail = ({data}) => {
         size: selectedSize,
         amount: 1,
         product: { ...selectedColor, size: updatedSizes },
-        productContent: data.attribute
+        productContent: data.attribute,
+        url: router.asPath,
       };
   
       dispatch(addToCart(selectedData));
