@@ -4,9 +4,6 @@ import { useSelector } from 'react-redux'
 //Slice
 import { cartList } from '../store/Slice/CartSlice'
 
-//API
-import { getSkirtseById } from '../pages/api/skirts'; 
-
 //LottieFiles
 import emptyCart from "../public/animations/empty-cart.json";
 
@@ -22,24 +19,9 @@ const Cart = () => {
   const selectedProduct = useSelector(cartList);
 
   useEffect(() => {
-    const fetchDataFromApi = async () => {
-
-        const featureData = await getSkirtseById(1);
-        if (featureData) {
-          setCart(featureData);
-        }
-    };
-
-    fetchDataFromApi();
-  }, []);
-
-  useEffect(() => {
-    if (!cart) {
-      setLoading(true);
-    } else {
-      setLoading(false);
-    }
-  }, [cart]);
+    setCart(selectedProduct);
+    setLoading(selectedProduct.length === 0);
+  }, [selectedProduct]);
 
   if (loading) {
     return <Loading />;
@@ -47,7 +29,7 @@ const Cart = () => {
 
   return (
     <div className="cart">
-      {selectedProduct.length > 0 ? (
+      {cart.length > 0 ? (
         <CartContent />
       ) : (
         <>

@@ -36,7 +36,6 @@ const Card = ({data, id, pages}) => {
       productContent: productFeature,
       url: `${router.pathname}/${data.id}`,
     };
-    
 
     if (favList.length > 0 ){
 

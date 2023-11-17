@@ -19,30 +19,28 @@ import { Dustbin } from "../public/icons/index";
 const Favorite = () => {
   const dispatch = useDispatch();
 
-  const selectedFavorites = useSelector(favoriteList);
+  const [favorite, setFavorite] = useState();
   const [loading, setLoading] = useState(true);
 
+  const selectedFavorites = useSelector(favoriteList);
 
   useEffect(() => {
-    if (!selectedFavorites) {
-      setLoading(true);
-    } else {
-      setLoading(false);
-    }
+    setFavorite(selectedFavorites);
+    setLoading(selectedFavorites.length === 0);
   }, [selectedFavorites]);
-
-  if (loading) {
-    return <Loading />;
-  }
 
   const handleRemoveFavorite = (event, product) => {
     event.preventDefault();
     dispatch(removeToFavorite(product.id));
   };
 
+  if (loading) {
+    return <Loading />;
+  }
+
   return (
     <div>
-      {selectedFavorites.length > 0 ? (
+      {favorite.length > 0 ? (
         <div className="favorite">
           <div className="row">
             {selectedFavorites &&
@@ -50,14 +48,11 @@ const Favorite = () => {
                 <div className="col-sm-12 col-md-6 col-lg-4" key={product.id}>
                   <div className="card">
                     <Link href={product.url}>
-                      {product.product.image.data[0] && (
-                        <img
-                          className="card-img-top"
-                          src={product.product.image.data[0].attributes.url}
-                          alt="favori product img"
-                        />
-                      )}
-
+                      <img
+                        className="card-img-top"
+                        src={product.product.image.data[0]?.attributes?.url}
+                        alt="favori product img"
+                      />
                       <button
                         onClick={(event) =>
                           handleRemoveFavorite(event, product)
