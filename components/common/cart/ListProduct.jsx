@@ -135,16 +135,20 @@ const ListProduct = () => {
                   <div className="col-8">
                     <div className="d-flex justify-content-between align-items-center">
                       <div className="d-flex justify-content-center">
-                        <Link href={selectedItem.url}>
-                          <img
-                            className="img"
-                            src={
-                              selectedItem.product.image.data[0]?.attributes
-                                ?.url
-                            }
-                            alt="cart-img"
-                          />
-                        </Link>
+                        {selectedItem.product.image.data[0]?.attributes?.url ? (
+                          <Link href="/">
+                            <img
+                              className="img"
+                              src={
+                                selectedItem.product.image.data[0].attributes
+                                  .url
+                              }
+                              alt="cart-img"
+                            />
+                          </Link>
+                        ) : (
+                          <div>Resim Yok</div>
+                        )}
                         <div
                           className="d-flex flex-column
                                 justify-content-between
