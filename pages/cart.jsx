@@ -20,8 +20,15 @@ const Cart = () => {
 
   useEffect(() => {
     setCart(selectedProduct);
-    setLoading(selectedProduct.length === 0);
   }, [selectedProduct]);
+
+  useEffect(() => {
+    if (!cart) {
+      setLoading(true);
+    } else {
+      setLoading(false);
+    }
+  }, [cart]);
 
   if (loading) {
     return <Loading />;
