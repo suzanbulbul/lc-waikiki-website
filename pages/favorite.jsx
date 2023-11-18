@@ -48,7 +48,7 @@ const Favorite = () => {
                 <div className="col-sm-12 col-md-6 col-lg-4" key={product.id}>
                   <div className="card">
                     <div>
-                      {product.product.image?.data[0]?.attributes?.url ? (
+                      {/* {product.product.image?.data[0]?.attributes?.url ? (
                         <Link href="/">
                           <img
                             className="card-img-top"
@@ -58,7 +58,7 @@ const Favorite = () => {
                         </Link>
                       ) : (
                         <div>Resim Yok</div>
-                      )}
+                      )} */}
                       <button
                         onClick={(event) =>
                           handleRemoveFavorite(event, product)
