@@ -26,20 +26,13 @@ const Favorite = () => {
 
   useEffect(() => {
     setFavorite(selectedFavorites);
+    setLoading(selectedFavorites.length === 0);
   }, [selectedFavorites]);
 
   const handleRemoveFavorite = (event, product) => {
     event.preventDefault();
     dispatch(removeToFavorite(product.id));
   };
-
-  useEffect(() => {
-    if (!favorite) {
-      setLoading(true);
-    } else {
-      setLoading(false);
-    }
-  }, [favorite]);
 
   if (loading) {
     return <Loading />;
@@ -51,92 +44,43 @@ const Favorite = () => {
         <div className="favorite">
           <div className="row">
             {selectedFavorites &&
-              selectedFavorites.map((product) => (
-                <div className="col-sm-12 col-md-6 col-lg-4" key={product.id}>
-                  <div className="card">
-                    <div
-                      className="col-sm-12 col-md-6 col-lg-4"
-                      key={product.id}
-                    >
-                      <div className="card">
-                        <h1>test {product.id}</h1>
-                        {/* <div>
-                          {product.product.image?.data[0]?.attributes?.url ? (
-                            <Link href="/">
-                              <img
-                                className="card-img-top"
-                                src={
-                                  product.product.image.data[0].attributes.url
-                                }
-                                alt="favori ürün resmi"
-                              />
-                            </Link>
-                          ) : (
-                            <div>Resim Yok</div>
-                          )}
-                          <button
-                            onClick={(event) =>
-                              handleRemoveFavorite(event, product)
-                            }
-                            className="card-icon me-2"
-                          >
-                            <Dustbin />
-                          </button>
-                          <div className="card-body">
-                            <h5 className="card-title">
-                              {product.productContent.brandDesc}
-                            </h5>
-                            <p className="card-desc">
-                              {product.productContent.brandName}
-                            </p>
-                            <b className="card-price blue">
-                              {product.product.price}
-                            </b>
-                            <button className="primary-button mt-4">
-                              SEPETE EKLE
-                            </button>
-                          </div>
-                        </div> */}
-                      </div>
-                    </div>
-                    <div>
-                      {product.product.image?.data[0]?.attributes?.url ? (
-                        <Link href="/">
-                          <img
-                            className="card-img-top"
-                            src={product.product.image.data[0].attributes.url}
-                            alt="favori ürün resmi"
-                          />
-                        </Link>
-                      ) : (
-                        <div>Resim Yok</div>
-                      )}
-                      <button
-                        onClick={(event) =>
-                          handleRemoveFavorite(event, product)
-                        }
-                        className="card-icon me-2"
-                      >
-                        <Dustbin />
-                      </button>
-                      <div className="card-body">
-                        <h5 className="card-title">
-                          {product.productContent.brandDesc}
-                        </h5>
-                        <p className="card-desc">
-                          {product.productContent.brandName}
-                        </p>
-                        <b className="card-price blue">
-                          {product.product.price}
-                        </b>
-                        <button className="primary-button mt-4">
-                          SEPETE EKLE
+              selectedFavorites.map((product) => {
+                return (
+                  <div className="col-sm-12 col-md-6 col-lg-4" key={product.id}>
+                    <div className="card">
+                      <Link href={`${product.url}`}>
+                        <img
+                          className="card-img-top"
+                          src={product.product.image.data[0]?.attributes?.url}
+                          alt="favori ürün resmi"
+                        />
+                        <button
+                          onClick={(event) =>
+                            handleRemoveFavorite(event, product)
+                          }
+                          className="card-icon me-2"
+                        >
+                          <Dustbin />
                         </button>
-                      </div>
+                        <div className="card-body">
+                          <h5 className="card-title">
+                            {product.productContent.brandDesc}
+                          </h5>
+                          <p className="card-desc">
+                            {product.productContent.brandName}
+                          </p>
+                          <b className="card-price blue">
+                            {product.product.price}
+                          </b>
+                          <button className="primary-button mt-4">
+                            SEPETE EKLE
+                          </button>
+                        </div>
+                      </Link>
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
           </div>
         </div>
       ) : (
