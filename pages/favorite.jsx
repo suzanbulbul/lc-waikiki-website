@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 
 //Slice
 import { favoriteList } from '../store/Slice/FavoriteSlice'
-import { removeToFavorite, removeAllFavorite } from '../store/Slice/FavoriteSlice'
+import { removeToFavorite } from '../store/Slice/FavoriteSlice'
 
 //Components
 import EmptyContent from '../components/common/EmptyContent';
@@ -47,9 +47,6 @@ const Favorite = () => {
 
   return (
     <div>
-      <button onClick={() => dispatch(removeAllFavorite())}>
-        Favorileri sil
-      </button>
       {favorite.length > 0 ? (
         <div className="favorite">
           <div className="row">

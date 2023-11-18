@@ -4,6 +4,7 @@ import Link from "next/link";
 
 //Slice
 import { cartList, removeAllCart, removeToCart } from '../../../store/Slice/CartSlice'
+import { removeAllFavorite } from '../../../store/Slice/FavoriteSlice'
 
 //Components
 import PaymentStep from "./PaymentStep";
@@ -44,14 +45,18 @@ const CartContent = () => {
                 Tümünü Seç
               </label>
             </div>
-            <button onClick={()=> dispatch(removeAllCart())} className="link-button">
+            <button onClick={() => dispatch(removeAllFavorite())}>
+              Favorileri sil
+            </button>
+            <button
+              onClick={() => dispatch(removeAllCart())}
+              className="link-button"
+            >
               <Dustbin className="me-1" />
-              Seçilenleri Sil  ({selectedProduct.length})
+              Seçilenleri Sil ({selectedProduct.length})
             </button>
           </div>
-          <ListProduct
-            data={selectedProduct}
-          />
+          <ListProduct data={selectedProduct} />
           <div className="line mt-4"></div>
         </div>
         <PaymentStep />
