@@ -34,8 +34,7 @@ const Card = ({data, id, pages}) => {
       amount: 0,
       product: product,
       productContent: productFeature,
-      url: "/"
-      // url: `${router.pathname}/${data.id}`,
+      url: `${router.pathname}/${data.id}`,
     };
 
 

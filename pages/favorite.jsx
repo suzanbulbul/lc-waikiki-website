@@ -44,43 +44,41 @@ const Favorite = () => {
         <div className="favorite">
           <div className="row">
             {selectedFavorites &&
-              selectedFavorites.map((product) => {
-                return (
-                  <div className="col-sm-12 col-md-6 col-lg-4" key={product.id}>
-                    <div className="card">
-                      <Link href={`${product.url}`}>
-                        <img
-                          className="card-img-top"
-                          src={product.product.image.data[0]?.attributes?.url}
-                          alt="favori ürün resmi"
-                        />
-                        <button
-                          onClick={(event) =>
-                            handleRemoveFavorite(event, product)
-                          }
-                          className="card-icon me-2"
-                        >
-                          <Dustbin />
+              selectedFavorites.map((product) => (
+                <div className="col-sm-12 col-md-6 col-lg-4" key={product.id}>
+                  <div className="card">
+                    <Link href={`${product.url}`}>
+                      <img
+                        className="card-img-top"
+                        src={product.product.image.data[0]?.attributes?.url}
+                        alt="favori ürün resmi"
+                      />
+                      <button
+                        onClick={(event) =>
+                          handleRemoveFavorite(event, product)
+                        }
+                        className="card-icon me-2"
+                      >
+                        <Dustbin />
+                      </button>
+                      <div className="card-body">
+                        <h5 className="card-title">
+                          {product.productContent.brandDesc}
+                        </h5>
+                        <p className="card-desc">
+                          {product.productContent.brandName}
+                        </p>
+                        <b className="card-price blue">
+                          {product.product.price}
+                        </b>
+                        <button className="primary-button mt-4">
+                          SEPETE EKLE
                         </button>
-                        <div className="card-body">
-                          <h5 className="card-title">
-                            {product.productContent.brandDesc}
-                          </h5>
-                          <p className="card-desc">
-                            {product.productContent.brandName}
-                          </p>
-                          <b className="card-price blue">
-                            {product.product.price}
-                          </b>
-                          <button className="primary-button mt-4">
-                            SEPETE EKLE
-                          </button>
-                        </div>
-                      </Link>
-                    </div>
+                      </div>
+                    </Link>
                   </div>
-                );
-              })}
+                </div>
+              ))}
           </div>
         </div>
       ) : (

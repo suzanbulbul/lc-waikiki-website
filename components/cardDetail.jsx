@@ -45,8 +45,7 @@ const CardDetail = ({data}) => {
         amount: 1,
         product: { ...selectedColor, size: updatedSizes },
         productContent: data.attribute,
-        // url: router.asPath
-        url: "/",
+        url: router.asPath
       };
   
       dispatch(addToCart(selectedData));

@@ -135,24 +135,19 @@ const ListProduct = () => {
                   <div className="col-8">
                     <div className="d-flex justify-content-between align-items-center">
                       <div className="d-flex justify-content-center">
-                        {selectedItem.product.image.data[0]?.attributes?.url ? (
-                          <Link href="/">
-                            <img
-                              className="img"
-                              src={
-                                selectedItem.product.image.data[0].attributes
-                                  .url
-                              }
-                              alt="cart-img"
-                            />
-                          </Link>
-                        ) : (
-                          <div>Resim Yok</div>
-                        )}
+                        <Link href={`${selectedItem.url}`}>
+                          <img
+                            className="img"
+                            src={
+                              selectedItem.product.image.data[0].attributes.url
+                            }
+                            alt="cart-img"
+                          />
+                        </Link>
                         <div
                           className="d-flex flex-column
-                                justify-content-between
-                                align-items-start"
+                                  justify-content-between
+                                  align-items-start"
                         >
                           <div>
                             <p className="font_18px-bold mb-1">
@@ -175,8 +170,8 @@ const ListProduct = () => {
                       <Calculate selectedItem={selectedItem} />
                     </div>
                     {/* <span className="text-small">
-                          Bu ürün hediye paketine uygun değildir.
-                        </span> */}
+                            Bu ürün hediye paketine uygun değildir.
+                          </span> */}
                   </div>
                   <div className="col-4">
                     <div className="d-flex flex-column justify-content-start align-items-end h-100">
