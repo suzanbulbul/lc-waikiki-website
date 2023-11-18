@@ -47,13 +47,15 @@ const Favorite = () => {
               selectedFavorites.map((product) => (
                 <div className="col-sm-12 col-md-6 col-lg-4" key={product.id}>
                   <div className="card">
-                    <Link href="/">
+                    <div>
                       {product.product.image?.data[0]?.attributes?.url ? (
-                        <img
-                          className="card-img-top"
-                          src={product.product.image.data[0].attributes.url}
-                          alt="favori ürün resmi"
-                        />
+                        <Link href="/">
+                          <img
+                            className="card-img-top"
+                            src={product.product.image.data[0].attributes.url}
+                            alt="favori ürün resmi"
+                          />
+                        </Link>
                       ) : (
                         <div>Resim Yok</div>
                       )}
@@ -79,7 +81,7 @@ const Favorite = () => {
                           SEPETE EKLE
                         </button>
                       </div>
-                    </Link>
+                    </div>
                   </div>
                 </div>
               ))}
