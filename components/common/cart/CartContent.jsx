@@ -4,7 +4,6 @@ import Link from "next/link";
 
 //Slice
 import { cartList, removeAllCart, removeToCart } from '../../../store/Slice/CartSlice'
-import { removeAllFavorite } from '../../../store/Slice/FavoriteSlice'
 
 //Components
 import PaymentStep from "./PaymentStep";
@@ -45,9 +44,6 @@ const CartContent = () => {
                 Tümünü Seç
               </label>
             </div>
-            <button onClick={() => dispatch(removeAllFavorite())}>
-              Favorileri sil
-            </button>
             <button
               onClick={() => dispatch(removeAllCart())}
               className="link-button"
